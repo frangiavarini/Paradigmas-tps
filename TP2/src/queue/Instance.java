@@ -1,5 +1,6 @@
 package queue;
 
+
 import java.util.List;
 
 public abstract class Instance {
@@ -20,3 +21,4 @@ public abstract class Instance {
 	
 	
 }
+
