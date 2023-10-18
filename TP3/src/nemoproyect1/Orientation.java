@@ -1,6 +1,6 @@
 package nemoproyect1;
 
-public class Orientation  {
+public class Orientation  { // cambiar por direction y hacer oficial de direccion
 	String directedTo;
 	
 	public Orientation() {

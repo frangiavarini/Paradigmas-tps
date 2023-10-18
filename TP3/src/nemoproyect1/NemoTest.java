@@ -8,81 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class NemoTest {
 
-//	@Test public void test00() {
-//		// esta en la superficie
-//		// en que posicion esta
-//		// para donde mira 
-//		
-//		Nemo nemo = new Nemo();
-//		funcion1(0,0,nemo);
-//		
-//		
-//	}
-//	
-//	@Test public void test01() {
-//		Nemo nemo = new Nemo();
-//	
-//		nemo.move("");
-//		funcion1(0,0,nemo);
-//	
-//		
-//	}
-//	
-//	@Test public void test02() {
-//		Nemo nemo = new Nemo();
-//		
-//		nemo.move("d");
-//		funcion1(-1,0,nemo);
-//
-//	}
-//	
-//	@Test public void test03() {
-//		Nemo nemo = new Nemo();
-//		
-//		nemo.move("u");
-//		funcion1(1,0,nemo);
-//		assertEquals(1, nemo.getProf()); 
-//		assertEquals(0, nemo.getPosition()); 
-//		assertEquals("north", nemo.getCardinal());
-//	}
-//	
-//	// seguir con los tests de un caracter
-//	@Test public void test04() {
-//	
-//		
-//		Nemo nemo = new Nemo();
-//		nemo.move("f");
-//		assertEquals(0, nemo.getProf()); 
-//		assertEquals(1, nemo.getPosition()); 
-//		assertEquals("north", nemo.getCardinal());
-//		
-//		
-//	}
-//	
-//	@Test public void test05() {
-//		Nemo nemo = new Nemo();
-//		nemo.move("r");
-//		assertEquals(0, nemo.getProf()); 
-//		assertEquals(0, nemo.getPosition()); 
-//		assertEquals("east", nemo.getCardinal());
-//		
-//	}
-//	
-//	@Test public void test06() {
-//		Nemo nemo = new Nemo();
-//		nemo.move("l");
-//		assertEquals(0, nemo.getProf()); 
-//		assertEquals(0, nemo.getPosition()); 
-//		assertEquals("west", nemo.getCardinal());
-//	}
-//	
-//	public void funcion1(int n1, int n2, Nemo nemo) {
-//		assertEquals(n1, nemo.getProf()); 
-//		assertEquals(n2, nemo.getPosition()); 
-//		assertEquals("north", nemo.getCardinal());
-//	}
-//	
-//}
+
 	Submarine Nemo = new Submarine();
 	@Test public void test00() {
 	
@@ -92,7 +18,7 @@ public class NemoTest {
 	}
 	
 	@Test public void test01NemoDoesNotmoveWNoDirec() {
-		MessageForNemo emptyCommand = new MessageForNemo("");
+		Commands emptyCommand = new Commands("");
 		emptyCommand.doSomenthing(Nemo);
 		assertEquals(0, Nemo.coordinates.coordX);
 		assertEquals(0, Nemo.coordinates.coordY);
@@ -102,26 +28,26 @@ public class NemoTest {
 	@Test public void test02NemoSumerges() {
 //		Nemo.move("d");
 		Submarine Nemo = new Submarine();
-		MessageForNemo command= new MessageForNemo("d");
+		Commands command= new Commands("d");
 		command.doSomenthing(Nemo);
 		assertEquals(-1, Nemo.coordinates.coordZ);
 	}
 	
 	@Test public void test03NemoAscends() {
-		MessageForNemo command= new MessageForNemo("du");
+		Commands command= new Commands("du");
 		command.doSomenthing(Nemo);
 		assertEquals(0, Nemo.coordinates.coordZ);
 	}
 	
 	@Test public void test04NemoRotatesLeft() {
 //		Nemo.spin("l");
-		MessageForNemo command= new MessageForNemo("l");
+		Commands command= new Commands("l");
 		command.doSomenthing(Nemo);
 		assertEquals("W", Nemo.cardinal.directedTo);
 	}
 	@Test public void test05NemoRotatesRight() {
 		//Nemo.spin("r");
-		MessageForNemo command= new MessageForNemo("r");
+		Commands command= new Commands("r");
 		command.doSomenthing(Nemo);
 		assertEquals("E", Nemo.cardinal.directedTo);
 	}
@@ -140,11 +66,88 @@ public class NemoTest {
 	@Test public void test07() {
 		Submarine Nemo = new Submarine();
 //		Nemo.move("f");
-		MessageForNemo command= new MessageForNemo("f");
+		Commands command= new Commands("f");
 		command.doSomenthing(Nemo);
 		assertEquals(1, Nemo.coordinates.coordX);
 	
 	}
-	
+
 	
 }
+
+
+//@Test public void test00() {
+//// esta en la superficie
+//// en que posicion esta
+//// para donde mira 
+//
+//Nemo nemo = new Nemo();
+//funcion1(0,0,nemo);
+//
+//
+//}
+//
+//@Test public void test01() {
+//Nemo nemo = new Nemo();
+//
+//nemo.move("");
+//funcion1(0,0,nemo);
+//
+//
+//}
+//
+//@Test public void test02() {
+//Nemo nemo = new Nemo();
+//
+//nemo.move("d");
+//funcion1(-1,0,nemo);
+//
+//}
+//
+//@Test public void test03() {
+//Nemo nemo = new Nemo();
+//
+//nemo.move("u");
+//funcion1(1,0,nemo);
+//assertEquals(1, nemo.getProf()); 
+//assertEquals(0, nemo.getPosition()); 
+//assertEquals("north", nemo.getCardinal());
+//}
+//
+//// seguir con los tests de un caracter
+//@Test public void test04() {
+//
+//
+//Nemo nemo = new Nemo();
+//nemo.move("f");
+//assertEquals(0, nemo.getProf()); 
+//assertEquals(1, nemo.getPosition()); 
+//assertEquals("north", nemo.getCardinal());
+//
+//
+//}
+//
+//@Test public void test05() {
+//Nemo nemo = new Nemo();
+//nemo.move("r");
+//assertEquals(0, nemo.getProf()); 
+//assertEquals(0, nemo.getPosition()); 
+//assertEquals("east", nemo.getCardinal());
+//
+//}
+//
+//@Test public void test06() {
+//Nemo nemo = new Nemo();
+//nemo.move("l");
+//assertEquals(0, nemo.getProf()); 
+//assertEquals(0, nemo.getPosition()); 
+//assertEquals("west", nemo.getCardinal());
+//}
+//
+//public void funcion1(int n1, int n2, Nemo nemo) {
+//assertEquals(n1, nemo.getProf()); 
+//assertEquals(n2, nemo.getPosition()); 
+//assertEquals("north", nemo.getCardinal());
+//}
+//
+//}

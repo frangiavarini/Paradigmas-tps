@@ -27,18 +27,18 @@ public class Coordinate {
 	
 	public Coordinate modify(String letter, Submarine aSubmarine) { //hacer oficial de posicion
 		
-		if(letter == "d") {
+		if(letter.equals("d")) {
 			coordZ -= 1;
 		}
-		else if(letter == "u") {
+		else if(letter.equals("u")) {
 			coordZ += 1;
 		}
 		
-		else if (letter == "") {
+		else if (letter.equals("")) {
 			return this;
 		}
 		
-		else if (letter == "f") {
+		else if (letter.equals("f")) {
 			aSubmarine.moveForward();
 			}
 		return this;
