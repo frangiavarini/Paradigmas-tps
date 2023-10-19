@@ -1,5 +1,15 @@
 package nemoproyect1;
 
 public class CommandF extends Commands {
-	public Character key = 'f';
+	@Override
+	public boolean findKey(char c) {
+		return c == 'f';
+		
+	}
+
+	@Override
+	public void doSomething(Submarine nemo) {
+		nemo.coordinates = nemo.cardinal.forward(nemo);		
+	}
+
 }

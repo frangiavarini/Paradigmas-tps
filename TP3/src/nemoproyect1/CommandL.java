@@ -1,8 +1,18 @@
 package nemoproyect1;
 
 public class CommandL extends Commands{
-	public Character key = 'l';
-	 public Character getKey() {
-	        return key;
-	    }
+
+	@Override
+	public boolean findKey(char c) {
+		return c == 'l';
+		
+	}
+
+	@Override
+	public void doSomething(Submarine nemo) {
+	
+	nemo.cardinal = nemo.cardinal.turnLeft();	
+		
+	}
+
 }

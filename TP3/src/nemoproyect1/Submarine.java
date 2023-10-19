@@ -1,5 +1,8 @@
 package nemoproyect1;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Submarine {
 
 	public Coordinate coordinates;
@@ -8,10 +11,10 @@ public class Submarine {
 	//public Operator operator;
 	
 	
-	public Submarine() {
-		coordinates = new Coordinate();
-		cardinal = new Orientation();
-	}
+//	public Submarine() {
+//		coordinates = new Coordinate();
+//		cardinal = new Orientation();
+//	}
 	
 	public Submarine(Coordinate coords, Orientation point ) {
 		coordinates = coords;
@@ -19,19 +22,19 @@ public class Submarine {
 	}
 	
 
-	public void move(String letter) {
-		
-		coordinates.modify(letter,this);
-	}
+//	public void move(String letter) {
+//		
+//		coordinates.modify(letter,this);
+//	}
 	
-	public void spin(String letter) {
-	    if (letter.equals("l")) {
-	        cardinal.spinLeft();
-	    }
-	    else if (letter.equals("r")) {
-	        cardinal.spinRight();
-	    }
-	}
+//	public void spin(String letter) {
+//	    if (letter.equals("l")) {
+//	        cardinal.spinLeft();
+//	    }
+//	    else if (letter.equals("r")) {
+//	        cardinal.spinRight();
+//	    }
+//	}
 	
 	public Submarine throwBrownie() {
 		if (coordinates.getRidOfBrownie()) {
@@ -41,17 +44,31 @@ public class Submarine {
 		return this;
 	}
 	
-	public Submarine moveForward() {
-		if(cardinal.directedTo=="N" || cardinal.directedTo=="S") {
-			coordinates.coordX += 1;
-		}
-		
-		else {
-			coordinates.coordY += 1;
-		}
-		return this;
-	}
-	
+//	public Submarine moveForward() {
+//		if(cardinal.directedTo=="N" || cardinal.directedTo=="S") {
+//			coordinates.coordX += 1;
+//		}
+//		
+//		else {
+//			coordinates.coordY += 1;
+//		}
+//		return this;
+//	}
+
+	public Submarine ejecutarComandos(String comandos) {
+        // Convert the string to a list of characters
+        List<Character> listaComandos = comandos.chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.toList());
+
+        for (char comando : listaComandos) {
+            	Commands.listOfCommands.stream()
+	            .filter(command -> command.findKey(comando)) //comando es el char que viene d elas acciones de nemo. command es cada objeto de la lista de Comandos.
+	            .findFirst()
+	            .orElse(null).doSomething(this);
+            }
+        	return this;
+        }
 	
 	
 }

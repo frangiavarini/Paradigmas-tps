@@ -1,37 +1,20 @@
 package nemoproyect1;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public abstract class Commands {
-    public List<Commands> listOfCommands = new ArrayList<>();
+    public static List<Commands> listOfCommands =  Arrays.asList(new CommandU(),
+    		new CommandL(), 
+    		new CommandD(),
+    		new CommandF(),
+    		new CommandM(),
+    		new CommandR()
+    	);
 
-    public Commands() {
-        // Agrega todas las subclases a la lista en el constructor
-        listOfCommands.add(new CommandU());
-        listOfCommands.add(new CommandL());
-        listOfCommands.add(new CommandD());
-        listOfCommands.add(new CommandF());
-        listOfCommands.add(new CommandM());
-        listOfCommands.add(new CommandR());
-    }
-
-    public abstract Character getKey();
-
-    public Commands addMessage(String message) {
-        // Resto del código...
-        return this;
-    }
-
-
-	
-
-    public boolean findKey(Character c,Commands aCommand) {
-        
-           return aCommand.getKey() == c;
-     
     
-    }
     
+    public abstract boolean findKey(char c);
+    public abstract void doSomething(Submarine nemo);
 }
 		
 		

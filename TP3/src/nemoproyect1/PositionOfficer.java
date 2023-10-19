@@ -11,7 +11,7 @@ public class PositionOfficer {
 	
 	public PositionOfficer modify() {
 		
-		actualCoords.suma(commandU.modifier);
+		//actualCoords.suma(commandU.modifier);
 		
 			
 		return this;
