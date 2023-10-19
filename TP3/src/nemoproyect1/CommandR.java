@@ -9,7 +9,7 @@ public class CommandR extends Commands{
 
 	@Override
 	public void doSomething(Submarine nemo) {
-		// TODO Auto-generated method stub
+		nemo.cardinal = nemo.cardinal.turnRight();
 		
 	}
 
