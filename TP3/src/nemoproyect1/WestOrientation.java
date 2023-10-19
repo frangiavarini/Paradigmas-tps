@@ -11,10 +11,15 @@ public class WestOrientation extends Orientation{
 		return new SouthOrientation();
 	}
 
-	@Override
+
 	public Coordinate forward(Submarine nemo) {
 	
 		return nemo.coordinates.suma(new Coordinate(-1,0));
+	}
+
+	public String getDirection() {
+		
+		return "west";
 	}
 
 }

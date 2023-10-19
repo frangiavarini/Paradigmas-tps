@@ -16,4 +16,10 @@ public class NorthOrientation extends Orientation {
 		
 		return nemo.coordinates.suma(new Coordinate(0,1));
 	}
+
+	@Override
+	public String getDirection() {
+		// TODO Auto-generated method stub
+		return "north";
+	}
 }

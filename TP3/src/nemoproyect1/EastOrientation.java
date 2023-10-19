@@ -16,4 +16,10 @@ public class EastOrientation extends Orientation{
 	public Coordinate forward(Submarine nemo) {
 		return nemo.coordinates.suma(new Coordinate(1,0));
 	}
+
+	
+	public String getDirection() {
+	
+		return "east";
+	}
 }
