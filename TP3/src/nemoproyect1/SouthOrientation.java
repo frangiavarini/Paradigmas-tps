@@ -18,9 +18,7 @@ public class SouthOrientation extends Orientation{
 		
 	}
 
-	
 	public String getDirection() {
-		
-		return "south";
+		return direction;
 	}
 }

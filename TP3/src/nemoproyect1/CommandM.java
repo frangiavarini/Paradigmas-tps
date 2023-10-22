@@ -9,8 +9,7 @@ public class CommandM extends Commands{
 
 	@Override
 	public void doSomething(Submarine nemo) {
-		// TODO Auto-generated method stub
-		
+		nemo.depths.get(nemo.depths.size() - 1).throwBrownie(nemo);
 	}
 
 }

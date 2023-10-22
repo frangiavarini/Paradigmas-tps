@@ -1,7 +1,7 @@
 package nemoproyect1;
 
 public class EastOrientation extends Orientation{
-	public String direction = "east";
+	public String direction = "East";
 	
 	public Orientation turnRight() {
 		return new SouthOrientation();
@@ -19,7 +19,6 @@ public class EastOrientation extends Orientation{
 
 	
 	public String getDirection() {
-	
-		return "east";
+		return direction;
 	}
 }

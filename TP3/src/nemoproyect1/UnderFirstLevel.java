@@ -1,29 +1,36 @@
 package nemoproyect1;
 
 public class UnderFirstLevel extends Depth{
+	public int depth;
+	
+	public UnderFirstLevel (int profundidad) {
+		depth = profundidad ; 
+	}
+	
 
 	@Override
 	public int getDepth() {
-		// TODO Auto-generated method stub
-		return -2;
+		return depth;
 	}
 
 	@Override
-	public Depth ascend() {
-		// TODO Auto-generated method stub
-		return null;
+	public Depth ascend(Submarine nemo) {
+		depth += 1;
+		nemo.depths.remove(nemo.depths.size() - 1);
+		return this;
 	}
 
 	@Override
-	public Depth descend() {
-		// TODO Auto-generated method stub
-		return null;
+	public Depth descend(Submarine nemo) {
+		nemo.depths.add(new UnderFirstLevel(depth - 1));
+		return this;
 	}
 
 	@Override
-	public Submarine throwBrownie(Submarine nemo) {
-		//lanzar error
-		return null;
+	public Depth throwBrownie(Submarine nemo) {
+		nemo.wasBrownieThrown = false;
+		return this;
 	}
+
 
 }

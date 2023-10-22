@@ -1,5 +1,6 @@
 package nemoproyect1;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -7,22 +8,21 @@ public class Submarine {
 
 	public Coordinate coordinates;
 	public Orientation cardinal;
-
-	public Boolean BrownieCapsuleThrown= false;
-
-	
-
-
+	public Boolean wasBrownieThrown;
+	public ArrayList<Depth> depths = new ArrayList<Depth>();
 	
 	public Submarine() {
-		coordinates= new Coordinate(0,0);
+		coordinates= new Coordinate();
 		cardinal = new NorthOrientation();
+		depths.add(new SurfaceLevel());
+		
 	}
 	
 	public Submarine(Coordinate coords, Orientation point) {
 		
-		this.coordinates = coords;
-		this.cardinal = point;
+		coordinates = coords;
+		cardinal = point;
+		depths.add(new SurfaceLevel());
 	
 		
 	}
@@ -37,15 +37,12 @@ public class Submarine {
 
 	
 	public Submarine throwBrownie() {
-		if (coordinates.getRidOfBrownie()) {
-			BrownieCapsuleThrown = true;
-		}
 		
 		return this;
 	}
 	
 
-	public Submarine ejecutarComandos(String comandos) {
+	public Submarine executeCommands(String comandos) {
         
         List<Character> listaComandos = comandos.chars()
                 .mapToObj(c -> (char) c)
@@ -53,7 +50,7 @@ public class Submarine {
 
         for (char comando : listaComandos) {
             	Commands.listOfCommands.stream()
-	            .filter(command -> command.findKey(comando)) //comando es el char que viene d elas acciones de nemo. command es cada objeto de la lista de Comandos.
+	            .filter(command -> command.findKey(comando)) //comando es el char que viene de las acciones de nemo. command es cada objeto de la lista de Comandos.
 	            .findFirst()
 	            .orElse(null).doSomething(this);
             }
@@ -62,5 +59,3 @@ public class Submarine {
 	
 	
 }
-
-

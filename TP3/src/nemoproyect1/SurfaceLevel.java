@@ -1,30 +1,29 @@
 package nemoproyect1;
 
+
 public class SurfaceLevel extends Depth{
 	public int depth = 0;
-	
+
 	public int getDepth() {
-		
 		return this.depth;
 	}
 
 	
-	public Depth ascend() {
-		
-		return new OverSurfaceLevel(); // o tiro error "nemo cant fly"
+	public Depth ascend(Submarine nemo) {
+		return this;
 	}
 
 	
-	public Depth descend() {
-	
-		return new FirstLevel();
+	public Depth descend(Submarine nemo) {
+		nemo.depths.add(new FirstLevel());
+		return this;
 	}
 
 
 	@Override
-	public Submarine throwBrownie(Submarine nemo) {
-		nemo.BrownieCapsuleThrown = true;
-		return nemo;
+	public Depth throwBrownie(Submarine nemo) {
+		nemo.wasBrownieThrown = true;
+		return this;
 	}
 
 }

@@ -1,7 +1,7 @@
 package nemoproyect1;
 
 public class NorthOrientation extends Orientation {
-	public String direction = "north";
+	public String direction = "North";
 	
 	public Orientation turnRight() {
 		return new EastOrientation();
@@ -17,9 +17,7 @@ public class NorthOrientation extends Orientation {
 		return nemo.coordinates.suma(new Coordinate(0,1));
 	}
 
-	@Override
 	public String getDirection() {
-		// TODO Auto-generated method stub
-		return "north";
+		return direction;
 	}
 }

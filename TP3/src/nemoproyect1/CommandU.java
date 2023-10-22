@@ -9,7 +9,7 @@ public class CommandU extends Commands {
 	}
 	@Override
 	public void doSomething(Submarine nemo) {
-		// hacer despues con profundidad y eso
+		nemo.depths.get(nemo.depths.size() - 1).ascend(nemo);
 		
 	}
 }

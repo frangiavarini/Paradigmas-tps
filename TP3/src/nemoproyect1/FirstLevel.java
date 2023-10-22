@@ -1,35 +1,35 @@
 package nemoproyect1;
 
+
 public class FirstLevel extends Depth {
-	
 	public int depth = -1;
-	
-	
-	public int getDepth() {
 
-		return this.depth;
+
+	
+
+	public Depth ascend (Submarine nemo) {
+		nemo.depths.remove(nemo.depths.size() -1);
+			return this;
 	}
-
-
-	public Depth ascend() {
-		this.depth += 1;
-		if (this.depth == 0) {
-			return new SurfaceLevel();
-		}
-		return this;
-	}
+		
 
 	
-	public Depth descend() {
-		this.depth -= 1;
+	public Depth descend(Submarine nemo) {
+		nemo.depths.add(new UnderFirstLevel(-2));
 		return this;
 	}
 
 
 	@Override
-	public Submarine throwBrownie(Submarine nemo) {
-		nemo.BrownieCapsuleThrown = true;
-		return nemo;
+	public Depth throwBrownie(Submarine nemo) {
+		nemo.wasBrownieThrown = true;
+		return this;
 	}
 
+
+
+	@Override
+	public int getDepth() {
+		return depth;
+	}
 }
