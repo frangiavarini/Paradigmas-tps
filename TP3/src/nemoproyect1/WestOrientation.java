@@ -1,6 +1,7 @@
 package nemoproyect1;
 
 public class WestOrientation extends Orientation{
+
 	public String direction = "West";
 	
 	public Orientation turnRight(){

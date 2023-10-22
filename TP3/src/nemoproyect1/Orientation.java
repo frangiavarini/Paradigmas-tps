@@ -1,6 +1,6 @@
 package nemoproyect1;
 
-public abstract class Orientation  {// cambiar por direction y hacer oficial de direccion
+public abstract class Orientation  {
 	
 	public abstract Orientation turnRight();
 	public abstract Orientation turnLeft();

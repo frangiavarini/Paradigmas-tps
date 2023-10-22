@@ -3,7 +3,7 @@ package nemoproyect1;
 public class Coordinate {
 	int coordX;
 	int coordY;
-	int coordZ; // para la  z hay que hacer uno nuevo, profundidad
+	int coordZ; 
 	public Coordinate() {
 		coordX = 0;
 		coordY = 0;
@@ -16,7 +16,7 @@ public class Coordinate {
 		coordZ = 0;
 	}
 	
-	//implementar suma, add o lo q sea
+	
 	
 	public Coordinate suma(Coordinate anotherCoord) {
 		int newX = this.coordX + anotherCoord.coordX;
@@ -25,25 +25,7 @@ public class Coordinate {
 		return newCoord;
 	}
 	
-//	public Coordinate modify(String letter, Submarine aSubmarine) { //hacer oficial de posicion
-//		
-//		if(letter.equals("d")) {
-//			coordZ -= 1;
-//		}
-//		else if(letter.equals("u")) {
-//			coordZ += 1;
-//		}
-//		
-//		else if (letter.equals("")) {
-//			return this;
-//		}
-//		
-//		else if (letter.equals("f")) {
-//			aSubmarine.moveForward();
-//			}
-//		return this;
-//	}
-//	
+
 	public boolean getRidOfBrownie() {
 		if (coordZ == 0 || coordZ == -1) {
 			return true;

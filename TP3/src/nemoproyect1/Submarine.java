@@ -23,16 +23,8 @@ public class Submarine {
 		coordinates = coords;
 		cardinal = point;
 		depths.add(new SurfaceLevel());
-	
 		
 	}
-	
-//	
-
-//	public void move(String letter) {
-//		
-//		coordinates.modify(letter,this);
-//	}
 	
 
 	
@@ -50,7 +42,7 @@ public class Submarine {
 
         for (char comando : listaComandos) {
             	Commands.listOfCommands.stream()
-	            .filter(command -> command.findKey(comando)) //comando es el char que viene de las acciones de nemo. command es cada objeto de la lista de Comandos.
+	            .filter(command -> command.findKey(comando)) 
 	            .findFirst()
 	            .orElse(null).doSomething(this);
             }
