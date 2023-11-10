@@ -1,5 +1,6 @@
 package fourInLine;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,21 +19,20 @@ public class FourInLineTest {
     		GameMode gamemode = new ModeA();
     		FourInLine game = new FourInLine(6,6,gamemode);		
     		assertEquals("A",game.gameMode.getMode());
-
-    	
-    }
+    		
+    	}
     
     
     @Test public void test02(){
     	GameMode gamemode = new ModeA();
         FourInLine game = new FourInLine(4, 4, gamemode);
-        game.playAt(0, new RedTurn());
-        game.playAt(0, new BlueTurn());
-        game.playAt(1, new RedTurn());
-        game.playAt(1, new BlueTurn());
-        game.playAt(2, new RedTurn());
-        game.playAt(2, new BlueTurn());
-        game.playAt(3, new RedTurn());
+        game.playRedAt(0);
+        game.playBlueAt(0);
+        game.playRedAt(1);
+        game.playBlueAt(1);
+        game.playRedAt(2);
+        game.playBlueAt(2);
+        game.playRedAt(3);
 
        
         assertTrue(game.endGame());
