@@ -15,7 +15,7 @@ public class Linea {
 		    
 		public Linea (int columns, int rows, char gameMode) {
 		
-		   if (rows < 4 || columns < 4) throw new RuntimeException("Not possible board available");
+		   if (rows < 4 || columns < 4) throw new Error("Not a possible board");
 	        height = rows;
 	        width = columns;
 	        this.gameMode = GameMode.setGameMode(gameMode);
@@ -53,10 +53,10 @@ public class Linea {
 		return row;
 	}
 		    
-	public void playRedAt(int column) {
+	public Linea playRedAt(int column) {
 		if(!endGame()) {
-			if(column < width) {
-				gameState=gameState.playRed(column, this);
+			if(column <= width) {
+				gameState=gameState.playRed(column-1, this);
 		       
 		    } else {
 		    	throw new Error("Inexistent column");
@@ -65,14 +65,15 @@ public class Linea {
 		else{
 			gameState=new GameOver();
 		}
+		return this;
 	}
 		    
 	
 	
-	public void playBlueAt(int column) {
+	public Linea playBlueAt(int column) {
 		if(!endGame()) {
-			if (column < width) {
-				gameState = gameState.playBlue(column, this);
+			if (column <= width) {
+				gameState = gameState.playBlue(column-1, this);
 				
 			} else {
 				throw new Error("Inexistent column");
@@ -80,6 +81,7 @@ public class Linea {
 		} else {
 			gameState=new GameOver();
 		}
+		return this;
 	}
 
 		
@@ -164,7 +166,7 @@ public class Linea {
 	    }
 	
 	 
-	    for (int j = 0; j < width; j++) {
+	    for (int j = 1; j <= width; j++) {
 	        display.append(j).append(" ");
 	    }
 	    display.append("\n");
@@ -179,6 +181,11 @@ public class Linea {
 	
 	    return display.toString();
 	}
+
+	public char getMode() {
+		return gameMode.getMode();
+	}
+
 
 
 
