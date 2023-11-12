@@ -10,9 +10,6 @@ import org.junit.jupiter.api.function.Executable;
 
 public class FourInLineTest {
 	
-	// Test for invalid board dimensions?
-	// Test for full column movements?
-	
     @Test 
     public void test01() {
     	Linea game = new Linea(6,6,'A');		
@@ -106,8 +103,9 @@ public class FourInLineTest {
         game.playRedAt(2);
         game.playBlueAt(2);
         game.playRedAt(3);
-        assertTrue(game.endGame());
+        gameFinished(game);
     }
+    
     
     @Test 
     public void test12ModeCworksWithVerticalWin() {
@@ -119,7 +117,7 @@ public class FourInLineTest {
         game.playRedAt(0);
         game.playBlueAt(1);
         game.playRedAt(0);
-        assertTrue(game.endGame());
+        gameFinished(game);
     }
     
     @Test
@@ -136,7 +134,7 @@ public class FourInLineTest {
         game.playRedAt(0);
         game.playBlueAt(3);
         game.playRedAt(3);
-        assertTrue(game.endGame());
+        gameFinished(game);
     }
     
     @Test
@@ -149,7 +147,7 @@ public class FourInLineTest {
         game.playRedAt(2);
         game.playBlueAt(2);
         game.playRedAt(3);
-        assertTrue(game.endGame());
+        gameFinished(game);
     }  
     
     @Test 
@@ -164,7 +162,7 @@ public class FourInLineTest {
         game.playRedAt(0);
 
        
-        assertTrue(game.endGame());
+        gameFinished(game);
     }
     
     
@@ -183,7 +181,7 @@ public class FourInLineTest {
         game.playBlueAt(3);
         game.playRedAt(3);
        
-        assertTrue(game.endGame());
+        gameFinished(game);
     }
     
     @Test 
@@ -202,11 +200,15 @@ public class FourInLineTest {
         game.playRedAt(2);
         game.playBlueAt(3);
        
-        assertTrue(game.endGame());
+        gameFinished(game);
     }
     
     private void assertThrowsLike(Executable executable, String message) {
 		assertEquals(message, assertThrows(Error.class, executable).getMessage());
+	}
+    
+    private void gameFinished(Linea game) {
+		assertTrue(game.endGame());
 	}
 
 }

@@ -1,33 +1,35 @@
 	package linea;
 	import java.util.List;
+	import java.util.stream.Collectors;
+	import java.util.stream.IntStream;
 	import java.util.ArrayList;
 	
-	public class Linea {
-	public  List<List<Character>> board;
-	private int height;
-	private int width;
-	public GameMode gameMode;
-	public boolean redTurn;
-	public GameState gameState;
+public class Linea {
+		public  List<List<Character>> board;
+		private int height;
+		private int width;
+		public GameMode gameMode;
+		public boolean redTurn;
+		public GameState gameState;
 	
 		    
-	public Linea (int columns, int rows, char gameMode) {
-		if (rows < 4 || columns < 4) throw new RuntimeException("Not posible board available");
-			height = rows;
-			width = columns;
-			this.gameMode = GameMode.setGameMode(gameMode);
-			redTurn = true;
-			gameState = new RedTurn();
-			board = new ArrayList<>(columns);
-			for (int i = 0; i < columns; i++) {
-				List<Character> column = new ArrayList<>(rows);
-			    for (int j = 0; j < rows; j++) {
-			    	column.add(' ');
-			    }
-			    this.board.add(column);  
-			}  
-	}  
-	
+		public Linea (int columns, int rows, char gameMode) {
+		
+		   if (rows < 4 || columns < 4) throw new RuntimeException("Not possible board available");
+	        height = rows;
+	        width = columns;
+	        this.gameMode = GameMode.setGameMode(gameMode);
+	        redTurn = true;
+	        gameState = new RedTurn();
+
+	        board = IntStream.range(0, columns)
+	                .mapToObj(i -> IntStream.range(0, rows)
+	                        .mapToObj(j -> ' ')
+	                        .collect(Collectors.toCollection(ArrayList::new)))
+	                .collect(Collectors.toCollection(ArrayList::new));
+		
+	}
+			
 	public boolean endGame() {
 		return gameMode.win(this) || notEmptySpaces();
 	}
@@ -35,27 +37,19 @@
 	public String lastPlayed() {
 		return gameState.lastPlayed();
 	}
+	
 	public boolean notEmptySpaces() {
-		for (List<Character> row : board) {
-			for (char square : row) {
-				if (square == ' ') {   
-					return false; 
-		        }
-		    }
-		}
-		return true; 
+	    return board.stream()
+	            .flatMap(List::stream)
+	            .noneMatch(square -> square == ' ');
 	}
 		        
 	public int isSquareEmpty(int column) {
-		int row = -1;
-		for (int i = 0; i < height; i++) {
-			if (board.get(column).get(i) == ' ') {
-				return i;
-		    }
-		}
-		if (row == -1) {
-			throw new Error ("This column is full");
-		}   
+		int row = IntStream.range(0, height)
+		        .filter(i -> board.get(column).get(i) == ' ')
+		        .findFirst()
+		        .orElseThrow(() -> new Error("This column is full"));
+
 		return row;
 	}
 		    
@@ -122,36 +116,21 @@
 	}
 		   
 	boolean winDiagonally() {
-		for (int x = 0; x < width - 3; x++) {  
-			for (int y = 0; y < height - 3; y++) {
-				if (sameGamePieceDiagonalWay1(x, y) || sameGamePieceDiagonalWay2(x, y)) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-		    
+	    return IntStream.range(0, width - 3)
+	            .anyMatch(x -> IntStream.range(0, height - 3)
+	                    .anyMatch(y -> sameGamePieceDiagonalWay1(x, y) || sameGamePieceDiagonalWay2(x, y)));
+	}    
+	
 	boolean winVertically() {
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height - 3 ; y++) {   
-				if (sameGamePieceVertically(x, y)) {
-					return true;
-				}
-			}
-		}
-		return false;
+	    return IntStream.range(0, width)
+	            .anyMatch(x -> IntStream.range(0, height - 3)
+	                    .anyMatch(y -> sameGamePieceVertically(x, y)));
 	}
 		    
 	boolean winHorizontally() {
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width - 3; x++) {  
-				if (sameGamePieceHorizontally(x, y)) {
-					return true;
-				}
-			}
-		}
-		return false;
+	    return IntStream.range(0, height)
+	            .anyMatch(y -> IntStream.range(0, width - 3)
+	                    .anyMatch(x -> sameGamePieceHorizontally(x, y)));
 	}
 
 	public String whosNext() {
@@ -161,13 +140,13 @@
 	public String show() {
 	    StringBuilder display = new StringBuilder();
 	
-	    // Iterate over each row in reverse order to display the board from bottom to top
+	   
 	    for (int i = height - 1; i >= 0; i--) {
-	        // Iterate over each column
+	        
 	        for (int j = 0; j < width; j++) {
-	            char square = board.get(j).get(i);  // Get the character at position (j, i)
+	            char square = board.get(j).get(i);  
 	
-	            // Determine the display character based on the content of the square
+	           
 	            char displayChar;
 	            if (square == 'r') {
 	                displayChar = 'X';
@@ -177,20 +156,19 @@
 	                displayChar = ' ';
 	            }
 	
-	            // Append the character to the StringBuilder
+	            
 	            display.append(displayChar).append(" ");
 	        }
-	        // Move to the next line after appending each row
+	       
 	        display.append("\n");
 	    }
 	
-	    // Append column numbers at the bottom
+	 
 	    for (int j = 0; j < width; j++) {
 	        display.append(j).append(" ");
 	    }
 	    display.append("\n");
-	
-	    // Check if the game has ended and display the result
+
 	    if (endGame()) {
 	        if (gameMode.win(this)) {
 	            display.append(lastPlayed()).append(" Wins").append("!\n");
